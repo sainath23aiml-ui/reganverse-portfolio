@@ -55,24 +55,13 @@ export const Home: React.FC = () => {
 };
 
 const HeroSection = () => {
-  const videoRef = React.useRef<HTMLVideoElement>(null);
-
-  React.useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 2.0; // Play at double speed
-    }
-  }, []);
 
   return (
     <section className="relative overflow-hidden min-h-[60vh] md:min-h-[85vh] flex flex-col justify-center p-8 md:p-16 border-b border-hud-border pt-24 md:pt-32">
-      <video
-        ref={videoRef}
-        src="/regan.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10 opacity-20"
+      <img
+        src="/hero_bg.png"
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10 opacity-40"
+        alt="Reaganverse Hero"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black/80 -z-10" />
       
