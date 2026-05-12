@@ -16,61 +16,14 @@ export const Tournaments: React.FC = () => {
   const [selectedTournament, setSelectedTournament] = React.useState<any>(null);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
+  const [tournaments, setTournaments] = React.useState<any[]>([]);
 
-  const tournaments = [
-    { 
-      id: 'TOUR-01',
-      title: 'REAGANVERSE ELITE CUP S2', 
-      type: 'SQUAD',
-      format: '4 vs 4 Squads', 
-      date: 'MAY 15, 2024', 
-      time: '7:00 PM IST', 
-      prize: '₹75,000', 
-      status: 'JOIN NOW',
-      requirements: 'Min Level 55, Diamond Rank+',
-      slots: '64 / 128 Teams',
-      image: '/elite_cup.png'
-    },
-    { 
-      id: 'TOUR-02',
-      title: 'SOLO SHOWDOWN: BERMUDA', 
-      type: 'SOLO',
-      format: '1 vs All Solo', 
-      date: 'MAY 18, 2024', 
-      time: '5:00 PM IST', 
-      prize: '₹15,000', 
-      status: 'JOIN NOW',
-      requirements: 'Open for All',
-      slots: '28 / 100 Players',
-      image: '/pro_scrims.png'
-    },
-    { 
-      id: 'TOUR-03',
-      title: 'PRO LEAGUE SCRIMS', 
-      type: 'SQUAD',
-      format: 'Full Map Battle', 
-      date: 'MAY 20, 2024', 
-      time: '4:00 PM IST', 
-      prize: '₹25,000', 
-      status: 'JOIN NOW',
-      requirements: 'Open for All',
-      slots: '12 / 48 Slots',
-      image: '/pro_scrims.png'
-    },
-    { 
-      id: 'TOUR-04',
-      title: 'CHALLENGER DUOS', 
-      type: 'DUO',
-      format: '2 vs 2 Duos', 
-      date: 'MAY 28, 2024', 
-      time: '9:00 PM IST', 
-      prize: '₹10,000', 
-      status: 'COMING SOON',
-      requirements: 'Heroic Only',
-      slots: '0 / 24 Teams',
-      image: '/community_cup.png'
-    }
-  ];
+  React.useEffect(() => {
+    fetch('/tournaments.json')
+      .then(res => res.json())
+      .then(data => setTournaments(data))
+      .catch(err => console.error("Error loading tournaments:", err));
+  }, []);
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
